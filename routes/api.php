@@ -28,4 +28,4 @@ Route::get('/breed/{breed}/image', [ DogController::class, 'showImage' ]);
 
 
 Route::post('/user/{user}/associate', [ UserController::class, 'associate' ]);
-Route::post('/park/{park}/associate', [ ParkController::class, 'associate' ]);
+Route::post('/park/{park}/breed', [ ParkController::class, 'associate' ]);

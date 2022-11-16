@@ -13,6 +13,6 @@ class ParkController extends Controller
 
     public function associate(Request $request, Park $park)
     {
-        return $this->makeAssociation($request, $park);
+        return $this->makeAssociation($request, $park, 'breed');
     }
 }

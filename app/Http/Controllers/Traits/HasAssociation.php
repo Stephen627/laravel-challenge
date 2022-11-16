@@ -15,15 +15,16 @@ trait HasAssociation
         'user' => User::class,
     ];
 
-    protected function makeAssociation(Request $request, $model)
+    protected function makeAssociation(Request $request, $model, $forceType = false)
     {
-        if (!isset($this->classes[$request->get('type')])) {
+        $type = $forceType ? $forceType : $request->get('type');
+        if (!isset($this->classes[$type])) {
             return [
                 'success' => false,
             ];
         }
 
-        $class = $this->classes[$request->get('type')];
+        $class = $this->classes[$type];
         $instance = $class::find($request->get('id'));
 
         if (!$instance) {
@@ -32,7 +33,7 @@ trait HasAssociation
             ];
         }
 
-        $function = $request->get('type') . 's';
+        $function = $type . 's';
         $model->$function()->save($instance);
         return [
             'success' => true,
