@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Breed;
 use App\Services\Dog;
 use App\Http\Controllers\Controller;
 
@@ -34,9 +35,8 @@ class DogController extends Controller
 
     public function show(string $breed)
     {
-        $searchBreed = str_replace('-', '/', $breed);
+        $breed = Breed::where('name', $breed)->first();
 
-        $breed = $this->service->getBreed($searchBreed);
         if (!$breed) {
             return [
                 'success' => false,
@@ -44,9 +44,14 @@ class DogController extends Controller
             ];
         }
 
+
         return [
             'success' => true,
-            'data' => $breed['message'],
+            'data' => [
+                'name' => $breed->name,
+                'parks' => $breed->parks,
+                'users' => $breed->users,
+            ],
         ];
     }
 
@@ -55,7 +60,21 @@ class DogController extends Controller
         $breeds = $this->service->getAllBreeds();
         $index = rand(0, count($breeds));
 
-        return $this->show($breeds[$index]);
+        $searchBreed = str_replace('-', '/', $breeds[$index]);
+        $breed = $this->service->getBreed($searchBreed);
+
+        if (!$breed) {
+            return [
+                'success' => false,
+            ];
+        }
+
+        $imageCount = count($breed['message']);
+
+        return [
+            'success' => true,
+            'data' => $breed['message'][rand(0, $imageCount - 1)],
+        ];
     }
 
     public function showImage(string $breed)
