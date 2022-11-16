@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
+use App\Models\Park;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\HasAssociation;
 
-class UserController extends Controller
+class ParkController extends Controller
 {
     use HasAssociation;
 
-    public function associate(Request $request, User $user)
+    public function associate(Request $request, Park $park)
     {
-        return $this->makeAssociation($request, $user);
+        return $this->makeAssociation($request, $park);
     }
 }

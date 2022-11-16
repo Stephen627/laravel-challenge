@@ -15,4 +15,9 @@ class Breed extends Model
     {
         return $this->morphToMany(User::class, 'userables');
     }
+
+    public function parks()
+    {
+        return $this->morphToMany(Park::class, 'parkables');
+    }
 }

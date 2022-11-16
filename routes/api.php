@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DogController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ParkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::get('/breed/{breed}/image', [ DogController::class, 'showImage' ]);
 
 
 Route::post('/user/{user}/associate', [ UserController::class, 'associate' ]);
+Route::post('/park/{park}/associate', [ ParkController::class, 'associate' ]);
