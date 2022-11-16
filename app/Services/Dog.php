@@ -28,4 +28,24 @@ class Dog
     {
         return $this->sendRequest('GET', "breed/{$breed}/images");
     }
+
+    public function getAllBreeds()
+    {
+        $response = $this->getBreeds();
+
+        if (!$response || $response['status'] === 'error') {
+            return false;
+        }
+
+        $breeds = [];
+        foreach ($response['message'] as $breed => $subBreeds) {
+            $breeds[] = $breed;
+
+            foreach ($subBreeds as $subBreed) {
+                $breeds[] = "{$breed}-{$subBreed}";
+            }
+        }
+
+        return $breeds;
+    }
 }

@@ -17,7 +17,7 @@ class DogController extends Controller
 
     public function list()
     {
-        $breeds = $this->getAllBreeds();
+        $breeds = $this->service->getAllBreeds();
 
         if (!$breeds) {
             return [
@@ -52,7 +52,7 @@ class DogController extends Controller
 
     public function showRandom()
     {
-        $breeds = $this->getAllBreeds();
+        $breeds = $this->service->getAllBreeds();
         $index = rand(0, count($breeds));
 
         return $this->show($breeds[$index]);
@@ -74,25 +74,5 @@ class DogController extends Controller
 
         $response['data'] = $response['data'][0];
         return $response;
-    }
-
-    protected function getAllBreeds()
-    {
-        $response = $this->service->getBreeds();
-
-        if (!$response || $response['status'] === 'error') {
-            return false;
-        }
-
-        $breeds = [];
-        foreach ($response['message'] as $breed => $subBreeds) {
-            $breeds[] = $breed;
-
-            foreach ($subBreeds as $subBreed) {
-                $breeds[] = "{$breed}-{$subBreed}";
-            }
-        }
-
-        return $breeds;
     }
 }
