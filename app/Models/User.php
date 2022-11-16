@@ -17,4 +17,14 @@ class User extends Model
         'email',
         'loaction',
     ];
+
+    public function parks()
+    {
+        return $this->morphedByMany(Park::class, 'userables');
+    }
+
+    public function breeds()
+    {
+        return $this->morphedByMany(Breed::class, 'userables');
+    }
 }

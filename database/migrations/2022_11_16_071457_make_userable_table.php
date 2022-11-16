@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('userable', function (Blueprint $table) {
+        Schema::create('userables', function (Blueprint $table) {
             $table->integer('user_id');
-            $table->integer('userable_id');
-            $table->string('userable_type');
+            $table->integer('userables_id');
+            $table->string('userables_type');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('userable');
+        Schema::drop('userables');
     }
 };

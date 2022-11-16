@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parkable', function (Blueprint $table) {
+        Schema::create('parkables', function (Blueprint $table) {
             $table->integer('park_id');
-            $table->integer('parkable_id');
-            $table->string('parkable_type');
+            $table->integer('parkables_id');
+            $table->string('parkables_type');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('parkable');
+        Schema::drop('parkables');
     }
 };

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('breedable', function (Blueprint $table) {
+        Schema::create('breedables', function (Blueprint $table) {
             $table->integer('breed_id');
-            $table->integer('breedable_id');
-            $table->string('breedable_type');
+            $table->integer('breedables_id');
+            $table->string('breedables_type');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('breedable');
+        Schema::drop('breedables');
     }
 };

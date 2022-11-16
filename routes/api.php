@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DogController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::get('/breed/{breed}', [ DogController::class, 'show' ]);
  * sure what to return for this one?
  */
 Route::get('/breed/{breed}/image', [ DogController::class, 'showImage' ]);
+
+
+Route::post('/user/{user}/associate', [ UserController::class, 'associate' ]);
