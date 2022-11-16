@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\DogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/breed', [ DogController::class, 'list' ]);
+Route::get('/breed/random', [ DogController::class, 'showRandom' ]);
+Route::get('/breed/{breed}', [ DogController::class, 'show' ]);
+/**
+ * I think I mis-understood the requirement here because my other breed endpoints are returning the images so not
+ * sure what to return for this one?
+ */
+Route::get('/breed/{breed}/image', [ DogController::class, 'showImage' ]);
